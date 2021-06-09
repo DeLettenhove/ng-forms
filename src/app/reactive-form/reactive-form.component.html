@@ -1,0 +1,17 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <label for="name">Name: </label>
+  <input id="name" type="text" formControlName="name" />
+  <label for="pass">Password: </label>
+  <input id="pass" type="password" formControlName="password" />
+  <div formArrayName="emails">
+    <h2>Emails</h2>
+    <button (click)="addEmail()">Add email</button>
+    <button (click)="removeEmail()">Remove email</button>
+  
+    <div *ngFor="let email of emails.controls; let i=index">
+      <label for="email-{{ i }}">Email:</label>
+      <input id="email-{{ i }}" type="text" [formControlName]="i">
+    </div>
+  </div>
+  <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+</form>

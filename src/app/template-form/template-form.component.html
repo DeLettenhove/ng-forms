@@ -1,0 +1,26 @@
+<form (ngSubmit)="onSubmit()" #templateForm="ngForm">
+  <label for="email">Input your email:</label>
+  <input
+    type="email"
+    required
+    pattern="^\w+@\w+\.\w{2,4}$"
+    id="email"
+    [(ngModel)]="model.email"
+    name="email"
+    #email="ngModel"
+  />
+  <span [hidden]="email.valid">This email is invalid</span>
+  <label for="pass">Input your password:</label>
+  <input
+    type="password"
+    id="pass"
+    required
+    minlength="8"
+    maxlength="16"
+    [(ngModel)]="model.password"
+    name="password"
+    #pass="ngModel"
+  />
+  <span [hidden]="pass.valid">This password is invalid</span>
+  <button type="submit" [disabled]="!templateForm.form.valid">Submit</button>
+</form>
